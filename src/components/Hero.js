@@ -23,6 +23,16 @@ const Hero = ({ heroRef }) => {
             },
         });
 
+        const handleTouchStart = () => {
+            if (videoRef.current.paused) {
+                videoRef.current.play();
+                videoRef.current.pause(); // Needed to activate video on iOS
+            }
+        };
+
+        // Add event listener for iOS to start video on the first touch
+        document.documentElement.addEventListener("touchstart", handleTouchStart, { once: true });
+
         // When the video metadata is loaded, set the animation
         const handleLoadedMetadata = () => {
             tl.fromTo(video, { currentTime: 0 }, { currentTime: video.duration || 1 });
@@ -36,6 +46,8 @@ const Hero = ({ heroRef }) => {
         return () => {
             // document.documentElement.removeEventListener("touchstart", handleTouchStart);
             video.removeEventListener("loadedmetadata", handleLoadedMetadata);
+            document.documentElement.addEventListener("touchstart", handleTouchStart);
+
         };
     }, []);
 
