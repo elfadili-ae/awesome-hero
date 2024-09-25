@@ -19,7 +19,7 @@ function App() {
         trigger: heroRef.current,
         start: "bottom bottom",
         end: "bottom top",
-        scrub: true,
+        scrub: 1,
       },
     });
   }, []);
