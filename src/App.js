@@ -1,23 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
+import Hero from './components/Hero';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Hero />
+      <div className='quote'>
+        <p className=''>If the path be<br /><span>beautiful</span><br />let us not ask<br />where it leads</p>
+      </div>
     </div>
   );
 }
