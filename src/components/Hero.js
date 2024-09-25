@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Hero = () => {
+const Hero = ({ heroRef }) => {
     const videoRef = useRef(null);
 
     useEffect(() => {
@@ -31,23 +31,6 @@ const Hero = () => {
         // Add loadedmetadata event listener
         video.addEventListener("loadedmetadata", handleLoadedMetadata);
 
-        // Fetch the video and create a blob URL after a delay
-        const fetchVideoBlob = () => {
-            const src = video.currentSrc || video.src;
-            setTimeout(() => {
-                if (window.fetch) {
-                    fetch(src)
-                        .then((response) => response.blob())
-                        .then((response) => {
-                            const blobURL = URL.createObjectURL(response);
-                            video.setAttribute("src", blobURL);
-                            video.currentTime = video.currentTime + 0.01;
-                        });
-                }
-            }, 100);
-        };
-
-        fetchVideoBlob();
 
         // Cleanup event listeners on component unmount
         return () => {
@@ -57,7 +40,7 @@ const Hero = () => {
     }, []);
 
     return (
-        <div id='container' className="hero">
+        <div ref={heroRef} id='container' className="hero">
             <video ref={videoRef} className='hero-video' src={VID} controls={false} muted></video>
         </div>
     );

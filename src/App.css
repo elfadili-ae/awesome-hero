@@ -5,15 +5,18 @@
 
 .App {
   text-align: center;
+  background-color: rgb(206, 145, 54);
 }
 
 .quote {
+  position: relative;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px 8px;
   background-color: rgb(206, 145, 54);
-  height: 100vh;
+  height: calc(100vh - 200px);
 }
 
 .quote p {
